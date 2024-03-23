@@ -27,7 +27,6 @@ export async function getEmployeeDetails(employeeId) {
     return employeeDetails;
 }
 // Removed the main function execution and exports for simplicity
-
 main()
     .catch(e => {
         console.error(e.message);

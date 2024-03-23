@@ -1,43 +1,45 @@
 import React, { useEffect, useState } from 'react';
-
+import '../styles/claims.css'
 function Claims() {
     const [claims, setClaims] = useState([]);
 
-    useEffect(() => {
-        const fetchEmployeeDetails = async () => {
-            const response = await fetch('http://localhost:4000/employee-details', {
-                credentials: 'include', // To ensure cookies are sent
-            });
-            if (response.ok) {
-                const data = await response.json();
-                setClaims(data.claims || []);
-            }
-        };
-
-        fetchEmployeeDetails();
-    }, []);
+    
 
     return (
+        <>
+        <div className='top-section'>
+            <h1 className='claimhead'>My Claims</h1>
+            <button className='top-button'><code>+ Make Claim</code></button>
+            </div>
         <div className="claims-container">
-            {claims.map((claim, index) => (
-                <div key={index} className="claim-box">
-                    <div className="claim-header">
-                        <span className="claim-title">{claim.description}</span>
-                        <span className="employee-name">{data.name}</span> {/* Adjust according to your data structure */}
-                        <span className="claim-amount">£{claim.amount}</span>
-                        <span className="claim-date">{claim.created.toString()}</span>
+                <div className="claim-type">
+                        <h2>Submitted</h2>
                     </div>
-                    <div className="claim-body">
-                        <p>Description: {claim.notes}</p> {/* Adjust 'notes' based on your actual data */}
-                        <div className="claim-actions">
-                            <button className="view-receipt">VIEW RECEIPT</button>
-                            <button className="accept-reject">ACCEPT/REJECT</button>
+                    <div className="claim-sections">
+                        <div className="claim1">
+                            <div className='claim1left'>
+                                <h3>Claim 1</h3>
+                                <p>Description: Accomodation</p>
+                            </div>
+                            <div className='claim1right'>
+                                <p>Amount: $100</p>
+                                <p>Status: Pending</p>
+                            </div>
+                        </div>
+                        <div className="claim2">
+                            <div className='claim2left'>
+                            <h3>Claim 2</h3>
+                            <p>Description: Travel</p>
+                            </div>
+                            <div className='claim2right'>
+                            <p>Amount: $200</p>
+                            <p>Status: Pending</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            ))}
-        </div>
+        </>
     );
-}
+};
 
 export default Claims;

@@ -60,50 +60,7 @@ body {
     background-color: #0099DD;
   }
 
-  .claims-container {
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.claim-box {
-    background-color: white;
-    margin: 10px;
-    width: calc(50% - 20px); /* Adjust width for two claims per row */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden; /* Ensures the child elements do not overflow the rounded corners */
-}
-
-.claim-header {
-    background-color: #094361;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-.claim-title,
-.employee-name,
-.claim-amount,
-.claim-date {
-    font-weight: 600;
-}
-
-.claim-body {
-    padding: 10px;
-    background-color: #E0EFFF; /* Light blue background */
-}
-
-.claim-actions button {
-    margin-right: 10px;
-    padding: 5px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+  
 
 .view-receipt {
     background-color: #00AAFF;
