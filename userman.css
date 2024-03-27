@@ -1,0 +1,100 @@
+html{
+    margin:0%;
+    background-color: #D8F2FF;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #D8F2FF;
+    margin: 0;
+    padding: 0;
+ 
+    justify-content: center; /* Horizontally center items */
+    align-items: center;
+  }
+  
+  .navbar {
+    background-color: #094361;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -2px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .navbar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background-color: white;
+  }
+  
+  .navbar > div > a:not(:last-child) {
+    margin-right: 20px;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    padding: 10px;
+    transition: background-color 0.3s ease; 
+    border-radius: 5px; 
+  }
+  
+  .navbar a:hover {
+    background-color: #073C4F; 
+  }
+  
+  .user-details{
+    background-color: #237995;
+    align-items: center;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row: 2;
+    border: 2px solid black; /* Border style */
+    border-radius: 10px; /* Adjust the radius as needed */
+    padding: 20px;
+  }
+  .user-innerdetails{
+    background-color:#ddf0f9;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding:5%;
+  }
+.a{
+    display:grid;
+    grid-template-columns: 400px 100px auto auto auto;
+    grid-template-rows: 200px 200px auto auto auto;
+}
+
+  
+
+table{
+border-collapse: separate; /* Separate borders between cells */
+border-spacing: 0 8px;
+padding-right: 0%;
+}
+
+td {
+    border-bottom: 1px solid black; /* Add underline border to each row */
+    padding-left: 90px;
+     /* Add padding inside each cell for spacing */
+}
+
+
+.container > div {
+  display: inline-block;
+  margin-right: 20px;
+   /* Adjust as needed */
+}
+.container  {
+  border-bottom: 1px solid black; /* Add underline border */
+  padding-bottom: 5px; /* Add padding-bottom for spacing */
+}

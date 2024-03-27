@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="userman.css">
+</head>
+<body>
+    <div class="navbar"> 
+        <div>
+          <a href="#">ExpenseEase</a>
+          <a href="#">Claims</a>
+          <a href="#">Line Manager</a>
+          <a href="#">User management</a>
+        </div>
+        <button className="employee-logout" onClick={handleLogout}>Log out</button>
+      </div>
+      <div class="a">
+    <p1>User Management</p1>
+    <div class="user-details">
+        <div class="user-innerdetails">
+            <div class="search">
+                <form action="/search" method="GET">
+                    <input type="text" name="query" class="search-input" placeholder="Search...">
+                    <button type="submit" class="search-button">
+                        search
+                    </button>
+                </form>
+            </div>
+            <div class="container">
+                
+                <div class="eployeeid">Employee Id</div>
+                <div class="eployeename">Employee Name</div>
+                <div class="b"><button>manage Account</button></div>
+            </div>
+    
+        
+    </div>
+</div>
+</body>
+</html>
