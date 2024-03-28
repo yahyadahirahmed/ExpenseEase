@@ -1,82 +1,91 @@
-body{
-    background-color: hsl(199, 61%, 75%);
+body {
+  background-color: hsl(199, 61%, 75%);
 }
-.header{
-    text-align: center;
-    font-size: 2.5rem;
-    font-family: "Roboto", sans-serif;
 
-    
-  }
- 
-.login-head{
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: "Roboto", sans-serif;
-  }
-  
-  /* Style the form container (if the form has an id or class) */
+.header {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: "Roboto", sans-serif;
 
-  
-  /* Style the form container (if the form has an id or class) */
-  .form-container {
-    display: flex;
-    justify-content: center;
-    border: 3px solid #000000;
-    background-color: hsl(200, 55%, 66%);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    margin: 0 auto;
-    padding-top: 1rem;
-    padding-bottom: 3rem;
-    padding-left: 2rem;
-    padding-right: 1.7rem;
-    gap: 10px; /* Space between form elements */
-    width: 50%;
-  }
-  
-  /* Style your inputs and labels inside the form as needed */
- .username-field, .password-field {
-    padding: 10px;
-    margin: 5px 0;
-    border: 2px solid #000000;
-    border-radius: 5px;
-    width: 100%;
- }
-  .username{
-    padding-right: 5px;
-    font-family: "Roboto", sans-serif;
-    font-size: 1.5rem;
-  }
-  .password{
-    padding-right: 8px;
-    font-family: "Roboto", sans-serif;
-    font-size: 1.5rem;
-  }
-.linkandsubmit{
-    display: flex;
-    padding: 1.5rem;
+
 }
-.forgot-password{
-    padding-top: 10px;
-    padding-right: 20px;
-    font-family: "Roboto", sans-serif;
+
+.login-head {
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: "Roboto", sans-serif;
 }
-.submit-button{
-    padding-left: 220px;
+
+/* Style the form container (if the form has an id or class) */
+
+
+/* Style the form container (if the form has an id or class) */
+.form-container {
+  display: flex;
+  justify-content: center;
+  border: 3px solid #000000;
+  background-color: hsl(200, 55%, 66%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  padding-left: 2rem;
+  padding-right: 1.7rem;
+  gap: 10px;
+  /* Space between form elements */
+  width: 50%;
 }
+
+/* Style your inputs and labels inside the form as needed */
+.username-field,
+.password-field {
+  padding: 10px;
+  margin: 5px 0;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.username {
+  padding-right: 5px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+}
+
+.password {
+  padding-right: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+}
+
+.linkandsubmit {
+  display: flex;
+  padding: 1.5rem;
+}
+
+.forgot-password {
+  padding-top: 10px;
+  padding-right: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.submit-button {
+  padding-left: 220px;
+}
+
 .submit {
-    padding: 10px   10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #233543;
-    color: white;
-    cursor: pointer;
-    font-family: "Roboto", sans-serif;
-  }
-  .submit:hover {
-    background-color: #000000;
-  }
-  
-  /* You may need to add media queries to handle different screen sizes */
-  
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #233543;
+  color: white;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+}
+
+.submit:hover {
+  background-color: #000000;
+}
+
+/* You may need to add media queries to handle different screen sizes */

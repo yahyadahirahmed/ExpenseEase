@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LineManager.css';
-import Claims from './Claims.jsx';
+import ClaimsManager from './ClaimsManager.jsx';
 
 
 function LineManager() {
@@ -19,17 +19,18 @@ function LineManager() {
 
   return (
     <>
-    <div className="navbar"> {/* Corrected from class to className */}
-      <div>
-        <a href="#">ExpenseEase</a>
-        <a href="#">Claims</a>
-        <a href="#">Line Manager</a>
-        <a href="#">User management</a>
+      <div className="navbar"> {/* Corrected from class to className */}
+        <div>
+          <a href="#">ExpenseEase</a>
+          <a href="#">Claims</a>
+          <a href="#">Line Manager</a>
+          <a href="#">User management</a>
+        </div>
+        <button className="employee-logout" onClick={handleLogout}>Log out</button>
       </div>
-      <button className="employee-logout" onClick={handleLogout}>Log out</button>
-    </div>
-    
-    <Claims />
+
+      <ClaimsManager />
+
     </>
   );
 }
