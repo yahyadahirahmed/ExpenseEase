@@ -1,0 +1,101 @@
+.claimhead{
+    padding-left: 20px;
+}
+.top-section{
+    display: flex;
+    text-align: center ;
+}
+.top-button{
+    display: inline-block;
+    margin-left: 20px;
+    border: 2px solid #979595;
+    background-color: rgb(225, 238, 246);
+    border-radius: 10px;
+    padding: 5px;
+    height: 50px;
+    transform: translateY(40%);
+}
+.claims-container {
+    padding: 5px;
+    margin: 20px;
+    width: 30%;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: rgb(49, 124, 161);
+}
+.claim-type {
+    text-align:center;
+    font-size: 20px;
+    width: 100%;
+    padding: 5px;
+    
+}
+.claim-sections {
+   padding: 5px;
+   
+}
+.claim1{
+    display: flex;
+    border: 2.5px solid #000000;
+    border-radius: 10px;
+    width: 100%;
+    background-color: rgb(225, 238, 246);
+    margin-bottom: 5px;
+}
+.claim1left{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+}
+.claim1right{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+}
+.claim2{
+    display: flex;
+    border: 2.5px solid #000000;
+    width: 100%;
+    background-color: rgb(225, 238, 246);
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+.claim2left{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+}
+.claim2right{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+}
+.bound{
+    width: 100%;
+    word-wrap: break-word;
+}
+.claim-header {
+    background-color: #094361;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+
+
+.claim-actions button {
+    margin-right: 10px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+

@@ -18,6 +18,7 @@ model Employee {
   name     String
   email    String   @unique
   password String
+  type     String
   claims   Claims[] // One employee can have many claims
 
   // this is so that it can be queried properly.
