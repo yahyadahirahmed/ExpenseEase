@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ExpenseApp</title>
+        <link rel="stylesheet" type="text/css" href="/styles/Register.css">
+    </head>
+    <body>
+        <h1 class="header">Register an account</h1>
+        <form class="form-container">
+            <div>
+                <label class="username">First Name:</label>
+                <input class="username-field" type="text" id="first-name" name="first-name">
+                <label class="username">Last Name:</label>
+                <input class="username-field" type="text" id="last-name" name="last-name">
+            </div>
+            <div>
+                <label class="username" for="email">Email:</label>
+                <input class="username-field" type="email" id="email" name="email" placeholder="Enter your email">
+            </div>
+            <div>
+                <label class="password" for="password">Password</label>
+                <input class="password-field" type="password" id="password" name="password" placeholder="Enter your password" pattern="^(?=.*[A-Z])(?=.*\d).{8,}$" required>
+                <label>Password must contain:<br>- a capital letter<br>- a number<br>- at least 8 characters</label>
+            </div>
+            <div>
+                <label class="password" for="password">Confirm Password</label>
+                <input class="password-field" type="password" id="confirmPassword" name="confirmPassword" required>
+                <span id="confirmPassword" class="error"></span>
+            </div>
+            <div class="submit-button">
+                <button class="submit" type="submit">Submit</button>
+            </div>
+        </form>
+    </body>
+</html>
