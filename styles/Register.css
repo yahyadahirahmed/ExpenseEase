@@ -21,34 +21,42 @@ body{
   /* Style the form container (if the form has an id or class) */
   .form-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     border: 3px solid #000000;
     background-color: hsl(200, 55%, 66%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     margin: 0 auto;
-    padding-top: 1rem;
-    padding-bottom: 3rem;
-    padding-left: 2rem;
-    padding-right: 1.7rem;
+    padding: 3rem;
     gap: 10px; /* Space between form elements */
     width: 50%;
   }
-  
+
+  .name-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    margin-left:25%;
+    margin-right: 25%;
+  }
+ 
   /* Style your inputs and labels inside the form as needed */
- .username-field, .password-field {
+ .firstName-field, .lastName-field, .password-field, .confirmPassword-field, .email-field {
     padding: 10px;
     margin: 5px 0;
     border: 2px solid #000000;
     border-radius: 5px;
     width: 100%;
  }
-  .username{
+
+  .firstName, .lastName, .email{
     padding-right: 5px;
     font-family: "Roboto", sans-serif;
     font-size: 1.5rem;
   }
-  .password{
+  .password, .confirmPassword{
     padding-right: 8px;
     font-family: "Roboto", sans-serif;
     font-size: 1.5rem;

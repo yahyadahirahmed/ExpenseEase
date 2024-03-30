@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ExpenseApp</title>
+        <link rel="stylesheet" type="text/css" href="/styles/Register.css">
+    </head>
+    <body>
+        <h1 class="header">Register an account</h1>
+        <form class="form-container">
+            <div class="name-container">
+                <div>
+                    <label class="firstName">First Name:</label>
+                    <input class="firstName-field" type="text" id="first-name" name="first-name">
+                </div>
+                <div>
+                    <label class="lastName">Last Name:</label>
+                    <input class="lastName-field" type="text" id="last-name" name="last-name">
+                </div>
+            </div>
+            <div>
+                <label class="email" for="email">Email:</label>
+                <input class="email-field" type="email" id="email" name="email" placeholder="Enter your email">
+            </div>
+            <div class="password-container">
+                <div>
+                    <label class="password" for="password">Password</label>
+                    <input class="password-field" type="password" id="password" name="password" placeholder="Enter your password" pattern="^(?=.*[A-Z])(?=.*\d).{8,}$" required>
+                    <label>Password must contain:<br>- a capital letter<br>- a number<br>- at least 8 characters</label>
+                </div>
+                <div>
+                    <label class="confirmPassword" for="cofnirmPassword">Confirm Password</label>
+                    <input class="confirmPassword-field" type="password" id="confirmPassword" name="confirmPassword" required>
+                    <span id="confirmPassword" class="error"></span>
+                </div>
+                <div class="submit-button">
+                    <button class="submit" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+        <scirpt src="confirmPassword.js"></scirpt>
+    </body>
+</html>
