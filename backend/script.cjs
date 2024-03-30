@@ -36,9 +36,9 @@ async function authenticateEmployee(email, password) {
     return employeeClaims;
 }
 
-async function getEmployeeIDs() {
-    const employeeIDs = await prisma.employee.findMany({
-        select: { id: true },
+async function findClaims() {
+    const employeeIDs = await prisma.claims.findMany({
+        where: { approved: false, rejected: false},
     });
     return employeeIDs; 
 }
@@ -54,3 +54,4 @@ exports.authenticateEmployee = authenticateEmployee;
 exports.getEmployeeDetails = getEmployeeDetails;
 exports.findEmployee = findEmployee;
 exports.findEmployeeClaims = findEmployeeClaims;
+exports.findClaims = findClaims;

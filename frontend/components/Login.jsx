@@ -39,11 +39,13 @@ function Login() {
 					console.log("Login successful")
 					if (empType === 'employee') {
 						console.log(empType);
+						console.log("hello employee");
 						navigate('/shush')
 					} else if (empType === 'LineManager') {
 						console.log("hello");
 						navigate('/line-manager')
 					} else if (empType === 'admin') {
+						console.log("hello admin");
 						navigate('/admin')
 					} else {
 						navigate('/')

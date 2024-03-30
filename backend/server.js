@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import jwt from 'jsonwebtoken'
-import { authenticateEmployee, findEmployee, findEmployeeClaims } from './script.cjs'
+import { authenticateEmployee, findEmployee, findEmployeeClaims, findClaims } from './script.cjs'
 
 const app = express();
 app.use(express.json());
@@ -111,6 +111,15 @@ app.get('/claims', authenticate, async (req, res) => {
     }
 });
 
+app.get('/ClaimsForManager', authenticate, async (req, res) => {
+    try {
+        const claims = await findClaims();
+        res.json({ success: true, claims });
+    } catch (error) {
+        console.error("Error fetching claims for manager:", error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+});
 
 
 const PORT = 4000;

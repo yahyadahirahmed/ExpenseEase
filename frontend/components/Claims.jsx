@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'; // Ensure axios is imported
+import { useAuth } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
 import '../styles/claims.css'
 
 function Claims() {
     const [claims, setClaims] = useState([]);
-    
+    const navigate = useNavigate();
+    const { auth } = useAuth();
     // async function fetchEmployeeDetails(email) {
     //     try {
     //         const response = await axios.get(`http://localhost:4000/find-employee?email=${email}`, { withCredentials: true });
@@ -37,6 +40,9 @@ function Claims() {
     }
 
     useEffect(() => {
+        if (!auth) {
+            navigate('/');
+        }
         fetchClaims();
     }, []);
 

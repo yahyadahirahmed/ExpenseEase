@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import '../output.css';
 
 function Admin () {
     const [values, setValues] = useState({email: ''});
@@ -57,24 +57,26 @@ const handleSubmit = async (e) => {
               auth &&
               <>
                   <Navbar />
-                  <h1>User Management</h1>
-                    <div className="user-details">
                         <div className="user-innerdetails">
-                            <div className="search">
-                                 <form onSubmit={handleSubmit}> {/* Use onSubmit here and refer to handleSubmit */}
-                                    <label className = "username">Email:</label>
-            	 	                    <div className='username-field12'>
-            	                        	<input  
-					                    		autoComplete='on'
-            	                                className='search-input'
-            	                                type="text"
-            	                                name="email"
-            	                                onChange={e => setValues({...values, email: e.target.value})}
-            	                        	/>
-            	 	                    </div>
-                                        <button type="submit" className="search-button">
+                            <div className="">
+                                 <form onSubmit={handleSubmit} className = 'bg-indigo-400 py-3 px-4 flex justify-between centre'> {/* Use onSubmit here and refer to handleSubmit */}
+                                    <div className='' >
+                                        <label className = "username">Email:</label>
+                                    </div>
+            	 	                <div className = ' pd-4'>
+            	                        <input  
+					                    	autoComplete='on'
+            	                            className='search-input'
+            	                            type="text"
+            	                            name="email"
+            	                            onChange={e => setValues({...values, email: e.target.value})}
+            	                        />
+            	 	                </div>
+                                    <div className = ' pd-4'>
+                                        <button type="submit" className = "bg-gray-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                             search
                                         </button>
+                                    </div>
                                 </form>
                             </div>
                              
@@ -94,7 +96,6 @@ const handleSubmit = async (e) => {
                                 <div className="b"><button>Manage Account</button></div>
                             </div>
                         </div>
-                    </div>
               </>
           }
       </>

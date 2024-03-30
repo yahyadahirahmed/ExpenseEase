@@ -1,0 +1,64 @@
+.claims-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px;
+    margin: auto;
+    width: 60vw;
+    height: 70vh;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #76b3d1;
+    overflow: auto;
+    position: relative;
+}
+
+.claim {
+    border: 2px solid black;
+    border-radius: 1em;
+    background-color: #e1eff6;
+    height: 30%;
+    position: relative;
+    flex: 1 0 40%;
+    margin: 0.5em;
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 0.75;
+
+}
+
+.claim-info {
+    margin-top: -15vh;
+}
+
+.claim-details {
+    align-self: flex-end;
+}
+
+.claimhead {
+    padding-left: 20vw;
+}
+
+.button-container {
+    margin-top: auto;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.claim button {
+    background-color: grey;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 0.5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
