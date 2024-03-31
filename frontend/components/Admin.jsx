@@ -1,16 +1,25 @@
-import React , { useState, useEffect } from 'react';
-import Navbar from './Navbar';
-import { useAuth } from './AuthContext';
+// Admin.jsx
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
+import Navbar from './Navbar';
 import axios from 'axios';
-import '../output.css';
 
-function Admin () {
+function Admin() {
     const [values, setValues] = useState({email: ''});
     const [employeeDetails, setEmployeeDetails] = useState(null);
     const navigate = useNavigate();
-    const { auth } = useAuth();
+    const { auth, loading } = useAuth();
 
+  useEffect(() => {
+    // Wait for the loading to complete before checking authentication status
+    if (!loading && !auth) {
+      console.log("Not authenticated");
+      navigate('/'); // Adjust this path as needed
+    }
+  }, [auth, loading, navigate]);
+
+  
   async function fetchEmployeeDetails(email) {
     try {
         const response = await axios.get(`http://localhost:4000/find-employee?email=${email}`, { withCredentials: true });
@@ -26,7 +35,7 @@ function Admin () {
     }
 }
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
     // Correctly access the input value
     const email = values.email; // Correctly access the email property
@@ -41,42 +50,29 @@ const handleSubmit = async (e) => {
     }
 };
 
-
-  useEffect(() => {
-      // If the user is not authenticated, redirect to the login page
-      if (!auth) {
-          navigate('/');
-      }
-  }, [auth, navigate]);
-
-  // The logout function and the rest of the component can stay outside useEffect
-  // as they do not need to be executed conditionally based on component rendering.
   return (
-      <>
-          {
-              auth &&
-              <>
-                  <Navbar />
+    <>
+      {auth && (
+        <>
+          <Navbar />
+          <h1>User Management</h1>
+                    <div className="user-details">
                         <div className="user-innerdetails">
-                            <div className="">
-                                 <form onSubmit={handleSubmit} className = 'bg-indigo-400 py-3 px-4 flex justify-between centre'> {/* Use onSubmit here and refer to handleSubmit */}
-                                    <div className='' >
-                                        <label className = "username">Email:</label>
-                                    </div>
-            	 	                <div className = ' pd-4'>
-            	                        <input  
-					                    	autoComplete='on'
-            	                            className='search-input'
-            	                            type="text"
-            	                            name="email"
-            	                            onChange={e => setValues({...values, email: e.target.value})}
-            	                        />
-            	 	                </div>
-                                    <div className = ' pd-4'>
-                                        <button type="submit" className = "bg-gray-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            <div className="search">
+                                 <form onSubmit={handleSubmit}> {/* Use onSubmit here and refer to handleSubmit */}
+                                    <label className = "username">Email:</label>
+            	 	                    <div className='username-field12'>
+            	                        	<input  
+					                    		autoComplete='on'
+            	                                className='search-input'
+            	                                type="text"
+            	                                name="email"
+            	                                onChange={e => setValues({...values, email: e.target.value})}
+            	                        	/>
+            	 	                    </div>
+                                        <button type="submit" className="search-button">
                                             search
                                         </button>
-                                    </div>
                                 </form>
                             </div>
                              
@@ -96,9 +92,13 @@ const handleSubmit = async (e) => {
                                 <div className="b"><button>Manage Account</button></div>
                             </div>
                         </div>
-              </>
-          }
-      </>
+                    </div>
+        </>
+      )}
+    </>
   );
 }
+
 export default Admin;
+
+                  

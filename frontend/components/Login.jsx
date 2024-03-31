@@ -63,8 +63,8 @@ function Login() {
 	
 	// Redirect if already logged in
 	useEffect(() => {
-		if (auth) {
-			navigate('/line-manager');
+		if (!auth) {
+			navigate('/');
 		}
 	}, [auth, navigate]);
 
@@ -112,7 +112,6 @@ function Login() {
             	 	</div>
 				</div>
             </form>
-				<button className='submit' onClick={() => navigate('/line-manager')}></button>
     	</>
     )
 }

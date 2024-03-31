@@ -5,15 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import Claims from "./Claims";
 
 function shush() {
-  const navigate = useNavigate();
-  const { auth } = useAuth();
+    const navigate = useNavigate();
+    const { auth, loading } = useAuth();
 
-  useEffect(() => {
-      // If the user is not authenticated, redirect to the login page
-      if (!auth) {
-          navigate('/');
-      }
-  }, [auth, navigate]);
+    useEffect(() => {
+        // Wait for the loading to complete before checking authentication status
+        if (!loading && !auth) {
+          console.log("Not authenticated");
+          navigate('/'); // Adjust this path as needed
+        }
+      }, [auth, loading, navigate]);
 
   // The logout function and the rest of the component can stay outside useEffect
   // as they do not need to be executed conditionally based on component rendering.

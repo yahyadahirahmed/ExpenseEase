@@ -5,8 +5,6 @@ import axios from 'axios';
 import '../styles/ClaimsManager.css'
 
 function ClaimsManager() {
-    const navigate = useNavigate();
-    const { auth } = useAuth();
     const [claims, setClaims] = useState([]);
 
     async function fetchClaimsForManagers() {
@@ -26,12 +24,9 @@ function ClaimsManager() {
     }
 
     useEffect(() => {
-        if (!auth) {
-            navigate('/');
-        }
         fetchClaimsForManagers();
 
-    }, [auth, navigate]);
+    }, []);
 
 
     return (
