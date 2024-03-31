@@ -3,6 +3,7 @@ import axios from 'axios'; // Ensure axios is imported
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import '../styles/claims.css'
+import ClaimComponent from './ClaimComponent';
 
 function Claims() {
     const [claims, setClaims] = useState([]);
@@ -53,14 +54,7 @@ function Claims() {
             </div>
             <div className="claims-container">
                 {claims.map((claim, index) => (
-                    <div key={index} className="claim">
-                        <div className='claim-details'>
-                            <h3><code>Claim {claim.id}</code></h3>
-                            <p><code>Description: {claim.description}</code></p>
-                            <p><code>Amount: ${claim.amount}</code></p>
-                            <p><code>Status: {claim.approved ? "Approved" : claim.rejected ? "Rejected" : "Pending"}</code></p>
-                        </div>
-                    </div>
+                    <ClaimComponent key={index} id={claim.id} description= {claim.description} amount={claim.amount} approved={claim.approved} rejected={claim.rejected}/>
                 ))}
             </div>
         </>
