@@ -18,6 +18,7 @@ model Employee {
   name     String
   email    String   @unique
   password String
+  type     String
   claims   Claims[] // One employee can have many claims
 
   // this is so that it can be queried properly.
@@ -25,14 +26,16 @@ model Employee {
 }
 
 model Claims {
-  id          Int      @id @default(autoincrement())
-  created     DateTime @default(now())
-  amount      Float
-  description String
-  approved    Boolean
-  rejected    Boolean
-  employeeId  Int // Foreign key pointing to Employee
-  employee    Employee @relation(fields: [employeeId], references: [id])
+  id           Int      @id @default(autoincrement())
+  created      DateTime @default(now())
+  amount       Float
+  description  String
+  approved     Boolean
+  rejected     Boolean
+  employeeName String
+
+  employeeId Int // Foreign key pointing to Employee
+  employee   Employee @relation(fields: [employeeId], references: [id])
 }
 
 enum Tables {

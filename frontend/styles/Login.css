@@ -1,5 +1,5 @@
 body{
-    background-color: hsl(199, 61%, 75%);
+    background-color:whitesmoke;
 }
 .header{
     text-align: center;
@@ -27,29 +27,29 @@ body{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     margin: 0 auto;
-    padding-top: 1rem;
-    padding-bottom: 3rem;
-    padding-left: 2rem;
-    padding-right: 1.7rem;
+    /* padding-top: 1rem;
+    padding-bottom: 3rem; */
+    /* padding-left: 2rem;
+    padding-right: 1.7rem; */
     gap: 10px; /* Space between form elements */
     width: 50%;
   }
   
   /* Style your inputs and labels inside the form as needed */
  .username-field, .password-field {
-    padding: 10px;
+    padding: 5px;
     margin: 5px 0;
     border: 2px solid #000000;
     border-radius: 5px;
     width: 100%;
  }
   .username{
-    padding-right: 5px;
+    /* padding-right: 5px; */
     font-family: "Roboto", sans-serif;
     font-size: 1.5rem;
   }
   .password{
-    padding-right: 8px;
+    /* padding-right: 8px; */
     font-family: "Roboto", sans-serif;
     font-size: 1.5rem;
   }

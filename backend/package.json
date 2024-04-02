@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "devStart": "nodemon script.cjs",
+    "start": "nodemon server.js",
+    "backapp": "npm run devStart & npm run start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
+    "express": "^4.19.1",
+    "firebase": "^10.10.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.11.0"
+  }
+}
