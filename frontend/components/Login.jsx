@@ -1,7 +1,7 @@
 import React , { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '/styles/Login.css';
+// import '/styles/Login.css';
 import { useAuth } from './AuthContext';
 import '../output.css';
 
@@ -70,48 +70,48 @@ function Login() {
 
     return (
 		<>
-            <h1 className='header font-bold mt-10 '><code className='text-black'>Expense Ease</code></h1>
-            <form className="form-container mt-20 w-45 py-10 bg-pink-600" onSubmit={handleSubmit}>
-            	<div className='details'>
-            	 	<div className='login-head'>
-            	    	<h2 className='font-bold text-black'>Login</h2>
-            	 	</div>
-            		<div>
-            	    	<label className = "username ">Email:</label>
-            	 	</div>
-            	 	<div className='username-field12'>
-            	    	<input  
-							autoComplete='on'
-            	            className='username-field'
-            	            type="text"
-            	            name="email"
-            	            onChange={e => setValues({...values, email: e.target.value})}
-            	    	/>
-            	 	</div>
-
-            	 	<div>
-            	 	    <label className='password'>Password:</label>
-            	 	</div>
-            	 	<div>
-            	 	    <input 
-							autoComplete='on'
-            	 	    	className='password-field'
-            	 	    	type="password"
-            	 	    	name="password"
-            	 	    	onChange={e => setValues({...values, password: e.target.value})}
-            	 	    />
-            	 	</div>
-            	 	<div className='linkandsubmit'>
-            	 		<div className='forgot-password'>
-            	 		    <a href="">Forgot Password?</a>
-            	 		</div>
-            	 		<div className='submit-button'>
-            	 		    <button className = "submit" type="submit">Submit</button>
-            	 		</div>
-            	 	</div>
-				</div>
-            </form>
-    	</>
+            	<div className='flex justify-center items-center min-h-screen bg-gray-700'>
+            	    <div className='max-w-md w-full bg-white shadow-lg rounded-lg p-8'>
+            	        <h2 className='font-bold text-xl text-center text-green-900 mb-8'>Expense Ease</h2>
+            	        <form onSubmit={handleSubmit}>
+            	            <div className='mb-4'>
+            	                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email:</label>
+            	                <input
+            	                    autoComplete='on'
+            	                    className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            	                    id="email"
+            	                    type="text"
+            	                    placeholder="Email"
+            	                    name="email"
+            	                    value={values.email}
+            	                    onChange={e => setValues({ ...values, email: e.target.value })}
+            	                />
+            	            </div>
+            	            <div className='mb-6'>
+            	                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Password:</label>
+            	                <input
+            	                    autoComplete='on'
+            	                    className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
+            	                    id="password"
+            	                    type="password"
+            	                    placeholder="Password"
+            	                    name="password"
+            	                    value={values.password}
+            	                    onChange={e => setValues({ ...values, password: e.target.value })}
+            	                />
+            	            </div>
+            	            <div className='flex items-center justify-between'>
+            	                <a className='inline-block align-baseline font-bold text-sm text-gray-900 hover:text-blue-800' href="#">
+            	                    Forgot Password?
+            	                </a>
+            	                <button className='bg-gray-800 hover:bg-red-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline' type="submit">
+            	                    Submit
+            	                </button>
+            	            </div>
+            	        </form>
+            	    </div>
+            	</div>	
+        </>	
     )
 }
 export default Login;

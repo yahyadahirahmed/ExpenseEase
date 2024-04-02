@@ -56,7 +56,7 @@ function Admin() {
         <>
           <Navbar />
           <div className="flex items-center justify-center">
-            <h1 className='text-centre text-4xl mt-2'>User Management</h1>
+            <h1 className='text-centre text-4xl mt-4'>User Management</h1>
           </div>
                     <div className="bg-gray-900 rounded p-2 m-10 mt-10">
                         <div className="">
@@ -86,16 +86,16 @@ function Admin() {
                                 {employeeDetails ? (
                                     <>
                                     <div className='flex justify-start'>
-                                    <div className="text-2xl p-3">EmployeeId: {employeeDetails.id}</div>
-                                    <div className="text-2xl p-3 ml-5">Name: {employeeDetails.name}</div>
-                                    <div className="text-2xl p-3 ml-5">Email: {employeeDetails.email}</div>
-                                    <div className="text-2xl p-3 ml-5">Password: {employeeDetails.password}</div>
+                                      <div className="text-2xl p-3">EmployeeId: {employeeDetails.id}</div>
+                                      <div className="text-2xl p-3 ml-5 text-green-700">Name: {employeeDetails.name}</div>
+                                      <div className="text-2xl p-3 ml-5 text-blue-700">Email: {employeeDetails.email}</div>
+                                      <div className="text-2xl p-3 ml-5 text-red-700">Password: {employeeDetails.password}</div>
                                     </div>
                                     </>
                                 ) 
                                 : 
                                 (
-                                    <div className="text-2xl">Employee details not available</div>
+                                    <div className="text-2xl font-bold pt-2 pl-1">Employee details not available</div>
                                 )}
                                 <div className="text-lg bg-gray-800 m-2 p-1 text-white font-bold rounded hover:bg-red-700"><button>Manage Account</button></div>
                                 </div>

@@ -6,6 +6,8 @@ import LineManager from './LineManager.jsx';
 import Admin from './Admin.jsx';
 import Employee from './Employee.jsx';
 import MakeClaim from './MakeClaim.jsx';
+import MakeClaimLM from './MakeClaimLM.jsx';
+import LineManagerClaims from './LineManagerClaims.jsx';
 
 
 function App() {
@@ -14,9 +16,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/lineManager" element={<LineManager />} />
+        <Route path="/lineManagerClaims" element={<LineManagerClaims />} />
         <Route path="/employee" element={<Employee />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/makeClaim" element={<MakeClaim />} />
+        <Route path="/makeClaimLM" element={<MakeClaimLM />} />
       </Routes>
     </BrowserRouter>
   );

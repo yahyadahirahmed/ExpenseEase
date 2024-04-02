@@ -4,11 +4,16 @@ import ClaimsManager from './ClaimsManager.jsx';
 import { useAuth } from './AuthContext';
 import Navbar from './Navbar.jsx';
 import Claims from './Claims.jsx';
+import LineManagerClaims from './LineManagerClaims.jsx';
 import '../output.css';
 
 function LineManager() {
     const navigate = useNavigate();
     const { auth, loading } = useAuth();
+
+    const route = () => {
+        navigate('/makeClaimLM');
+    }
 
     useEffect(() => {
         // Wait for the loading to complete before checking authentication status
@@ -27,8 +32,8 @@ function LineManager() {
                 <>
                     <Navbar />
                     <div className='flex gap-8'>
-                    <Claims/>
-                    <ClaimsManager />
+                        <ClaimsManager />
+                        <LineManagerClaims />
                     </div>
                 </>
             }
