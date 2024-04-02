@@ -61,87 +61,74 @@ function MakeClaimLM() {
         }
         }, [auth, loading, navigate]);
     return (
-      <div className="form_box p-4 w-1/2 bg-gray-800 rounded">
-      <div className="from_containter">
-          <div className="form_header p-5 ">
-                {/* Might have to make this separate to the actual form  */}
-              <button className="text-white" onClick={routeBack}>Back</button> 
-              <h2 className="text-white font-inter text-4xl font-600"> Make Claim</h2>
+        <>
+        <div className='bg-gray-900'>
+        <div className="w-40">
+        <button className="bg-gray-50 font-semibold hover:bg-blue-500 m-1 p-2 rounded" onClick={routeBack}> Back</button>
+        </div>
+        <div className="flex items-center justify-center min-h-screen bg-gray-900">
+          <div className="w-full max-w-xl bg-gray-800 rounded-lg shadow-lg p-6">
+            <div className="text-white text-3xl font-bold text-center mb-4">
+              Make Claim
+            </div>
+      
+            <form className="space-y-4">
+              <div>
+                <label className="block text-white text-sm font-bold mb-2">Employee ID</label>
+                <input
+                  className="w-full p-2 text-black rounded focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Enter your EmployeeID.."
+                  onChange={(e) => setEmployeeId(e.target.value)}
+                />
+              </div>
+      
+              <div>
+                <label className="block text-white text-sm font-bold mb-2">Employee Name</label>
+                <input
+                  className="w-full p-2 text-black rounded focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Enter Employee Name.."
+                  onChange={(e) => setEmployeeName(e.target.value)}
+                />
+              </div>
+      
+              <div>
+                <label className="block text-white text-sm font-bold mb-2">Claim Amount</label>
+                <input
+                  className="w-full p-2 text-black rounded focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Enter Amount.."
+                  onChange={(e) => setAmount(e.target.value)}
+                />
+              </div>
+      
+              <div className="flex items-center justify-between">
+                <div className="w-full mr-2">
+                  <label className="block text-white text-sm font-bold mb-2">Select a file</label>
+                  <input type="file" id="file" name="file" accept=".pdf,.doc,.docx" className="w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600"/>
+                </div>
+              </div>
+      
+              <div>
+                <label className="block text-white text-sm font-bold mb-2">Description</label>
+                <textarea
+                  className="w-full p-2 text-black rounded focus:outline-none focus:shadow-outline"
+                  rows="4"
+                  placeholder="Enter Claim Description.."
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
+              </div>
+      
+              <div className="flex items-center justify-between">
+                <button type="reset" className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Reset</button>
+                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleSubmit}>Submit</button>
+              </div>
+            </form>
           </div>
-  
-          <form className="rounded-lg shadow-md form-main mt-3">
-              <div className="form-head p-5 flex justify-between items-center">
-                  <div className="">
-                      <h2 className="text-white font-inter text-2xl font-600">CLAIM APPLICATION : EMPLOYEE NAME</h2>
-                  </div>
-              </div>
-              <div className="p-5">
-                  <div className="flex justify-between items-center flex-warp">
-                      <div className="w-50 form-group mb-4 mr-2 p-5">
-                          <label className="text-shadow-md text-white">Employee ID</label>
-                          <input
-                           className="rounded" 
-                           type="text" name="" 
-                           placeholder="Enter your EmployeeID.." 
-                           onChange={(e) => setEmployeeId(e.target.value)}
-                          />
-                      </div>
-                      <div className="w-50 form-group mb-4 mr-2 p-5">
-                          <label className="text-shadow-md text-white">Employee name</label>
-                          <input
-                           className="rounded" 
-                           type="text" name="" 
-                           placeholder="Enter your EmployeeID.." 
-                           onChange={(e) => setEmployeeName(e.target.value)}
-                          />
-                      </div>
-
-                  </div>
-                  <div className="">
-                  <div className="flex justify-start items-center flex-warp">
-                  </div>
-                  <div className="">
-                      <div className="mb-4 pl-0">
-                      <div className="flex gap-2">
-                          <label className="text-shadow-md text-white">Claim Amount : </label>
-                          <input 
-                          className="rounded" 
-                          type="text" 
-                          name=""  
-                          placeholder="Enter Amount.." 
-                          onChange={(e) => setAmount(e.target.value)}
-                          />
-                      </div>
-                          <label className="text-shadow-md text-white">Select a file</label>
-                          <div className="flex gap-4">
-                              <input type="text" className="mt-2 rounded" placeholder="Choose file..." readOnly />
-                              <label htmlFor="file" className="text-white font-bold px-2 bg-gray-700 rounded">Browse</label>
-                              <input type="file" id="file" name="file" accept=".pdf,.doc,.docx" style={{ display: 'none' }} />
-                          </div>
-                          <div className="flex gap-20 mt-2">
-                              <button type="reset" className="text-white">Reset</button>
-                              <button type="submit" className="text-white">Upload</button>
-                          </div>
-                      </div>
-                  </div>
-                    </div>
-                  <div className="flex justify-between items-center flex-warp">
-                      <div className="w-100 form-group">
-                          <label className="text-shadow-md text-white"> Description</label>
-                          <textarea 
-                          rows="4" 
-                          placeholder="Enter Claim Description.."
-                          onChange={(e) => setDescription(e.target.value)}
-                          />
-                      </div>
-                  <div>
-                      <button type="submit" className="btn-submit text-white" onClick={handleSubmit}> SUBMIT</button>
-                  </div>
-                  </div>
-              </div>
-          </form>
-      </div>
-  </div>
+        </div>
+        </div>
+        </>
     );
   }
   
