@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'; // Ensure axios is imported
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
-import '../styles/claims.css'
+// import '../styles/claims.css'
+import '../output.css';
 
 function Claims() {
     const [claims, setClaims] = useState([]);
@@ -49,16 +50,19 @@ function Claims() {
     return (
         <>
             <div className='top-section'>
-                <h1 className='claimhead'><code>My Claims</code></h1>
             </div>
-            <div className="claims-container">
+            <div className="bg-gray-900 rounded p-1 ml-4 mt-3 overflow-y-auto grid grid-cols-2 gap-1">
                 {claims.map((claim, index) => (
                     <div key={index} className="claim">
-                        <div className='claim-details'>
-                            <h3><code>Claim {claim.id}</code></h3>
-                            <p><code>Description: {claim.description}</code></p>
-                            <p><code>Amount: ${claim.amount}</code></p>
-                            <p><code>Status: {claim.approved ? "Approved" : claim.rejected ? "Rejected" : "Pending"}</code></p>
+                        <div className='claim-details bg-gray-300 m-2 rounded'>
+                            <div className='flex justify-between'>
+                                <h3 className='m-2'><code>Claim {claim.id}</code></h3>
+                                <p className='m-2'><code>Status: {claim.approved ? "Approved" : claim.rejected ? "Rejected" : "Pending"}</code></p>
+                            </div>
+                            <div className='flex justify-between'>
+                                <p className='m-2'><code>Amount: ${claim.amount}</code></p>
+                                <p className='m-2'><code>Description: {claim.description}</code></p>
+                            </div>
                         </div>
                     </div>
                 ))}

@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import jwt from 'jsonwebtoken'
-import { authenticateEmployee, findEmployee, findEmployeeClaims, findClaims } from './script.cjs'
+import { authenticateEmployee, findEmployee, findEmployeeClaims, findClaims, acceptClaim, rejectClaim, createClaim, getEmployeeDetails } from './script.cjs'
 
 const app = express();
 app.use(express.json());
@@ -85,6 +85,22 @@ app.get('/find-employee', async (req, res) => {
         res.status(400).json({ success: false, message: 'Email is required' });
     }
 });
+app.get('/get-employee-details/:employeeId', async (req, res) => {
+    const { employeeId } = req.params;
+
+    try {
+        const employeeDetails = await getEmployeeDetails(parseInt(employeeId));
+        if (employeeDetails) {
+            res.json({ success: true, employee: employeeDetails });
+        } else {
+            res.status(404).json({ success: false, message: 'Employee not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'An error occurred' });
+    }
+});
+
 
 
 app.get('/claims', authenticate, async (req, res) => {
@@ -118,6 +134,62 @@ app.get('/ClaimsForManager', authenticate, async (req, res) => {
     } catch (error) {
         console.error("Error fetching claims for manager:", error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+});
+
+// Route handler for accepting a claim
+app.post('/claims/accept/:claimId', async (req, res) => {
+    const claimId = parseInt(req.params.claimId); // Ensure claimId is correctly parsed as an integer
+    if (isNaN(claimId)) {
+        return res.status(400).json({ success: false, message: "Invalid claim ID" });
+    }
+    try {
+        const result = await acceptClaim(claimId);
+        if (result) {
+            res.json({ success: true, message: 'Claim accepted successfully' });
+        } else {
+            res.status(404).json({ success: false, message: 'Claim not found' });
+        }
+    } catch (error) {
+        console.error("Error accepting claim:", error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+});
+
+// Route handler for rejecting a claim
+app.post('/claims/reject/:claimId', async (req, res) => {
+    const claimId = parseInt(req.params.claimId); // Ensure claimId is correctly parsed as an integer
+    if (isNaN(claimId)) {
+        return res.status(400).json({ success: false, message: "Invalid claim ID" });
+    }
+    try {
+        const result = await rejectClaim(claimId);
+        if (result) {
+            res.json({ success: true, message: 'Claim rejected successfully' });
+        } else {
+            res.status(404).json({ success: false, message: 'Claim not found' });
+        }
+    } catch (error) {
+        console.error("Error rejecting claim:", error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+});
+
+app.post('/makeClaim', async (req, res) => {
+    console.log("here it is:");
+    const { employeeId, employeeName, amount, description } = req.body;
+    console.log(req.body);
+    try {
+        const claim = await createClaim(employeeId, employeeName, description, amount);
+        if (claim) {
+            console.log("Claim created successfully:", claim);
+            res.status(201).json({ success: true, message: 'Claim created successfully', claim });
+        } else {
+            res.status(400).json({ success: false, message: 'Failed to create claim' });
+        }
+    } catch (error) {
+        console.error("Error creating claim you donkey:", error);
+        res.status(500).json({ success: false, message: 'Server error', error: error.message });
     }
 });
 

@@ -11,11 +11,11 @@ function Navbar() {
             <div className="bg-gray-800 text-white p-4 flex justify-between items-center">
                 <div className="flex gap-4">
                     <a href="#" className="hover:text-gray-300">ExpenseEase</a>
-                    <a href="#" className="hover:text-gray-300">Claims</a>
+                    {/* <a href="#" className="hover:text-gray-300">Claims</a>
                     <a href="#" className="hover:text-gray-300">Line Manager</a>
-                    <a href="#" className="hover:text-gray-300">User management</a>
+                    <a href="#" className="hover:text-gray-300">User management</a> */}
                 </div>
-                <button className="bg-black-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={logout}>Log out</button>
+                <button className="bg-black-900 text-white px-4 py-2 font-bold rounded hover:bg-red-700" onClick={logout}>Log out</button>
             </div>
         </>
     );

@@ -55,41 +55,50 @@ function Admin() {
       {auth && (
         <>
           <Navbar />
-          <h1>User Management</h1>
-                    <div className="user-details">
-                        <div className="user-innerdetails">
+          <div className="flex items-center justify-center">
+            <h1 className='text-centre text-4xl mt-2'>User Management</h1>
+          </div>
+                    <div className="bg-gray-900 rounded p-2 m-10 mt-10">
+                        <div className="">
                             <div className="search">
-                                 <form onSubmit={handleSubmit}> {/* Use onSubmit here and refer to handleSubmit */}
-                                    <label className = "username">Email:</label>
-            	 	                    <div className='username-field12'>
+                                 <form className='flex justify-start m-4' onSubmit={handleSubmit}> {/* Use onSubmit here and refer to handleSubmit */}
+                                    <label className = "pt-2 pr-1 text-white font-bold">Email:</label>
+            	 	                    <div className='pl-4 pt-2 pr-1'>
             	                        	<input  
-					                    		autoComplete='on'
-            	                                className='search-input'
+					                    		            autoComplete='on'
+            	                                className=' px-2 font-bold rounded'
             	                                type="text"
             	                                name="email"
             	                                onChange={e => setValues({...values, email: e.target.value})}
             	                        	/>
             	 	                    </div>
-                                        <button type="submit" className="search-button">
-                                            search
+                                        <div className='pl-4 pt-2 pr-1 '>
+                                        <button type="submit" className="bg-gray-800 text-white px-1 font-bold rounded hover:bg-red-700">
+                                            Search
                                         </button>
+                                        </div>
                                 </form>
                             </div>
                              
-                            <div className="container">
-                                <div className="employeeid">Employee Id</div>
+                            <div className="bg-gray-300 ml-4 mr-8 rounded">
+                                <div className='flex justify-between'>
                                 {/* Conditional rendering to ensure employeeDetails is not null */}
                                 {employeeDetails ? (
                                     <>
-                                    <div className="employeename">ID: {employeeDetails.id}</div>
-                                    <div className="employeename">Name: {employeeDetails.name}</div>
+                                    <div className='flex justify-start'>
+                                    <div className="text-2xl p-3">EmployeeId: {employeeDetails.id}</div>
+                                    <div className="text-2xl p-3 ml-5">Name: {employeeDetails.name}</div>
+                                    <div className="text-2xl p-3 ml-5">Email: {employeeDetails.email}</div>
+                                    <div className="text-2xl p-3 ml-5">Password: {employeeDetails.password}</div>
+                                    </div>
                                     </>
                                 ) 
                                 : 
                                 (
-                                    <div className="employeename">Employee details not available</div>
+                                    <div className="text-2xl">Employee details not available</div>
                                 )}
-                                <div className="b"><button>Manage Account</button></div>
+                                <div className="text-lg bg-gray-800 m-2 p-1 text-white font-bold rounded hover:bg-red-700"><button>Manage Account</button></div>
+                                </div>
                             </div>
                         </div>
                     </div>

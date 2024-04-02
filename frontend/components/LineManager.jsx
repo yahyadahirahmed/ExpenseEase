@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import ClaimsManager from './ClaimsManager.jsx';
 import { useAuth } from './AuthContext';
 import Navbar from './Navbar.jsx';
+import Claims from './Claims.jsx';
+import '../output.css';
 
 function LineManager() {
     const navigate = useNavigate();
@@ -24,7 +26,10 @@ function LineManager() {
                 auth &&
                 <>
                     <Navbar />
+                    <div className='flex gap-8'>
+                    <Claims/>
                     <ClaimsManager />
+                    </div>
                 </>
             }
         </>

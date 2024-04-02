@@ -3,7 +3,42 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
+    // const shush = await prisma.claims.update({
+    //         where: {
+    //             id: 53,
+    //         },
+    //         data: {
+    //             approved: false,
+    //             rejected: false,
+    //         },
+    //     });
+
+//     const claim = await prisma.employee.create({
+//         data : {
+//             id: 3,
+//             name: 'wasim',
+//             email: 'wasim@gmail.com',
+//             password: '123',
+//             type: 'admin'
+//         }
+// });
+
+
+    // Delete all claims associated with the employee
+    // await prisma.claims.delete({
+    //     where: {
+    //         employeeId: 5,
+    //     },
+    // });
+
+    // Now it's safe to delete the employee
+    // const employee = await prisma.employee.delete({
+    //     where: {
+    //         id: 6,
+    //     },
+    // });
 }
+
 // Make sure to export functions directly
 async function authenticateEmployee(email, password) {
     const employee = await prisma.employee.findUnique({
@@ -42,16 +77,95 @@ async function findClaims() {
     });
     return employeeIDs; 
 }
+
+// Function to create claims after a make claim form has been submitted by an employee
+async function createClaim(employeeId, employeeName ,description, amount) {
+    // Convert amount to a number if it's a string
+    amount = parseFloat(amount);
+    employeeId = parseFloat(employeeId);
+   let variable = employeeName;
+   let variable2 = description;
+   if (variable === undefined && variable2 === undefined) {
+         throw new Error('wow this is gay');
+   }
+    if (!employeeId || !description || isNaN(amount) || !employeeName) {
+      throw new Error('Missing or invalid input');
+    }
+  
+    try {
+      const newClaim = await prisma.claims.create({
+        data: {
+          employeeId: parseInt(employeeId), // Make sure to convert to number if needed
+          employeeName,
+          description,
+          amount, // Pass the converted amount
+          approved: false,
+          rejected: false,
+        },
+      });
+      console.log("Claim created successfully:", newClaim);
+      return newClaim;
+    } catch (error) {
+      console.error("Error creating claim:", error);
+      throw error; // Rethrow the error to handle it in the server.js
+    }
+  }
+  
+// Function to accept a claim by setting 'approved' to true and 'rejected' to false
+async function acceptClaim(claimId) {
+    try {
+        const updatedClaim = await prisma.claims.update({
+            where: {
+                id: claimId,
+            },
+            data: {
+                approved: true,
+                rejected: false,
+            },
+        });
+        console.log("Claim accepted successfully:", updatedClaim);
+        return updatedClaim;
+    } catch (error) {
+        console.error("Error accepting claim:", error);
+        return null;
+    }
+}
+
+// Function to reject a claim by setting 'rejected' to true and 'approved' to false
+async function rejectClaim(claimId) {
+    try {
+        const updatedClaim = await prisma.claims.update({
+            where: {
+                id: claimId,
+            },
+            data: {
+                approved: false,
+                rejected: true,
+            },
+        });
+        console.log("Claim rejected successfully:", updatedClaim);
+        return updatedClaim;
+    } catch (error) {
+        console.error("Error rejecting claim:", error);
+        return null;
+    }
+}
+
+
+
 // Removed the main function execution and exports for simplicity
 main()
-    .catch(e => {
-        console.error(e.message);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
+.catch(e => {
+    console.error(e.message);
+})
+.finally(async () => {
+    await prisma.$disconnect();
+});
 exports.authenticateEmployee = authenticateEmployee;
 exports.getEmployeeDetails = getEmployeeDetails;
 exports.findEmployee = findEmployee;
 exports.findEmployeeClaims = findEmployeeClaims;
 exports.findClaims = findClaims;
+exports.acceptClaim = acceptClaim;
+exports.rejectClaim = rejectClaim;
+exports.createClaim = createClaim;

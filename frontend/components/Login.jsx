@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '/styles/Login.css';
 import { useAuth } from './AuthContext';
+import '../output.css';
 
 function Login() {
     const { auth, setAuth, empType } = useAuth();
@@ -38,14 +39,13 @@ function Login() {
 					setAuth(true);
 					console.log("Login successful")
 					if (empType === 'employee') {
-						console.log(empType);
-						console.log("hello employee");
-						navigate('/shush')
+						console.log("employee");
+						navigate('/employee')
 					} else if (empType === 'LineManager') {
-						console.log("hello");
-						navigate('/line-manager')
+						console.log("line manager");
+						navigate('/lineManager')
 					} else if (empType === 'admin') {
-						console.log("hello admin");
+						console.log("admin");
 						navigate('/admin')
 					} else {
 						navigate('/')
@@ -70,15 +70,14 @@ function Login() {
 
     return (
 		<>
-            <h1 className='header'><code>Expense Ease</code></h1>
-            <div className= "block"></div>
-            <form className="form-container" onSubmit={handleSubmit}>
+            <h1 className='header font-bold mt-10 '><code className='text-black'>Expense Ease</code></h1>
+            <form className="form-container mt-20 w-45 py-10 bg-pink-600" onSubmit={handleSubmit}>
             	<div className='details'>
             	 	<div className='login-head'>
-            	    	<h2>Login</h2>
+            	    	<h2 className='font-bold text-black'>Login</h2>
             	 	</div>
             		<div>
-            	    	<label className = "username">Email:</label>
+            	    	<label className = "username ">Email:</label>
             	 	</div>
             	 	<div className='username-field12'>
             	    	<input  

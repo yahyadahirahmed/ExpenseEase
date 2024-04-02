@@ -2,8 +2,10 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import React from 'react';
 import Login from './Login.jsx';
 import LineManager from './LineManager.jsx';
-import Shush from './shush.jsx';
+// import Shush from './shush.jsx';
 import Admin from './Admin.jsx';
+import Employee from './Employee.jsx';
+import MakeClaim from './MakeClaim.jsx';
 
 
 function App() {
@@ -11,9 +13,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/line-manager" element={<LineManager />} />
-        <Route path="/shush" element={<Shush />} />
+        <Route path="/lineManager" element={<LineManager />} />
+        <Route path="/employee" element={<Employee />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/makeClaim" element={<MakeClaim />} />
       </Routes>
     </BrowserRouter>
   );
