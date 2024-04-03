@@ -83,8 +83,8 @@ function ClaimsManager() {
     return (
         <>
     <div className='flex flex-col items-center mt-8'>
-        <h1 className='text-3xl font-bold text-black mb-7'>Claim Management</h1>
-        <div className="w-full max-w-4xl grid md:grid-cols-2 gap-4 ml-3 bg-gray-900 overflow-auto rounded" style={{ maxHeight: '600px' }}>
+        <h1 className='text-3xl font-bold text-black mb-6'>Claim Management</h1>
+        <div className="w-full max-w-4xl grid md:grid-cols-2 gap-4 ml-3 bg-gray-900 overflow-auto rounded p-2" style={{ maxHeight: '600px' }}>
             {claims.map((claim, index) => (
                 <div key={index} className="bg-gray-700 m-2 p-4 rounded-lg shadow">
                     <div className='flex justify-between items-center text-white'>

@@ -52,11 +52,11 @@ function Claims() {
             <div className='top-section'>
                 {/* Placeholder for any content you might want in the top section */}
             </div>
-            <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-6 mt-6 overflow-y-auto" style={{ maxHeight: '80vh' }}>
+            <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-4 mt-6 overflow-y-auto" style={{ maxHeight: '80vh' }}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {claims.map((claim, index) => (
-                        <div key={index} className="bg-white divide-y divide-gray-200 rounded-lg shadow overflow-hidden">
-                            <div className='p-6'>
+                        <div key={index} className="bg-gray-100 divide-y divide-gray-200 rounded-lg shadow overflow-hidden">
+                            <div className='p-4'>
                                 <h3 className='text-xl font-semibold mb-2'>Claim {claim.id}</h3>
                                 <p>Status: <span className={`font-semibold ${claim.approved ? 'text-green-500' : claim.rejected ? 'text-red-500' : 'text-yellow-500'}`}>
                                     {claim.approved ? "Approved" : claim.rejected ? "Rejected" : "Pending"}
