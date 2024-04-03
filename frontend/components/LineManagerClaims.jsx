@@ -15,8 +15,8 @@ function LineManagerClaims() {
             <div>
                 <div className=" my-8">
                     <div className="flex">
-                    <h1 className="text-4xl text-center font-bold text-gray-800 mr-8">Line Manager Claims</h1>
-                    <button className= "bg-gray-800 text-white font-bold rounded px-1 hover:bg-red-700" onClick={route}> + Click here to make claim</button>
+                    <h1 className="text-3xl ml-4 text-center font-bold text-gray-800 mr-8">Line Manager Claims</h1>
+                    <button className= "bg-gray-800 text-white font-bold rounded px-2 hover:bg-red-700" onClick={route}> + Click here to make claim</button>
                     </div>
                     <div className="">
                         <Claims />

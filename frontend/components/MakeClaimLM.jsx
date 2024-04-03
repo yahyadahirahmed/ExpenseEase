@@ -39,7 +39,9 @@ function MakeClaimLM() {
     const handleSubmit = async (e) => {
         e.preventDefault();
        
-        if (employeeId === thisid) {
+        const empid = parseInt(employeeId);
+
+        if (empid === thisid) {
        
         try {
             // Update URL to your server endpoint

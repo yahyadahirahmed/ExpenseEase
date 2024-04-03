@@ -31,9 +31,9 @@ function LineManager() {
                 auth &&
                 <>
                     <Navbar />
-                    <div className='flex gap-8'>
-                        <ClaimsManager />
-                        <LineManagerClaims />
+                    <div className='flex gap-10 ml-10'>
+                        <div className='ml-10'><ClaimsManager /></div>
+                        <div className='ml-10'><LineManagerClaims /></div>
                     </div>
                 </>
             }

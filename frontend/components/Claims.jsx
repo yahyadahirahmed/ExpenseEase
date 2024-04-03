@@ -52,21 +52,23 @@ function Claims() {
             <div className='top-section'>
                 {/* Placeholder for any content you might want in the top section */}
             </div>
-            <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-6 mt-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-                {claims.map((claim, index) => (
-                    <div key={index} className="bg-white divide-y divide-gray-200 rounded-lg shadow">
-                        <div className='p-6'>
-                            <h3 className='text-xl font-semibold mb-2'>Claim {claim.id}</h3>
-                            <p>Status: <span className={`font-semibold ${claim.approved ? 'text-green-500' : claim.rejected ? 'text-red-500' : 'text-yellow-500'}`}>
-                                {claim.approved ? "Approved" : claim.rejected ? "Rejected" : "Pending"}
-                            </span></p>
+            <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-6 mt-6 overflow-y-auto" style={{ maxHeight: '80vh' }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {claims.map((claim, index) => (
+                        <div key={index} className="bg-white divide-y divide-gray-200 rounded-lg shadow overflow-hidden">
+                            <div className='p-6'>
+                                <h3 className='text-xl font-semibold mb-2'>Claim {claim.id}</h3>
+                                <p>Status: <span className={`font-semibold ${claim.approved ? 'text-green-500' : claim.rejected ? 'text-red-500' : 'text-yellow-500'}`}>
+                                    {claim.approved ? "Approved" : claim.rejected ? "Rejected" : "Pending"}
+                                </span></p>
+                            </div>
+                            <div className='p-6 pt-4'>
+                                <p className='font-medium'>Amount: <span className='font-normal'>${claim.amount}</span></p>
+                                <p className='font-medium'>Description: <span className='font-normal'>{claim.description}</span></p>
+                            </div>
                         </div>
-                        <div className='p-6 pt-4'>
-                            <p className='font-medium'>Amount: <span className='font-normal'>${claim.amount}</span></p>
-                            <p className='font-medium'>Description: <span className='font-normal'>{claim.description}</span></p>
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </>
     );
