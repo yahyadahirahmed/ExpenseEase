@@ -1,22 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from './AuthContext';
+import { useAuth} from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../output.css';
 
 function MakeClaimLM() {
-    const { auth, loading } = useAuth();
+    const { auth, loading, email} = useAuth();
     const navigate = useNavigate();
 
     const [employeeId, setEmployeeId] = useState('');
     const [employeeName, setEmployeeName] = useState('');
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
+    const [thisid, setThisid] = useState('');
+
+    const userEmail = localStorage.getItem('userEmail');
     // const [file, setFile] = useState(null); // For file input
     
+  async function fetchEmployeeDetails(email) {
+        try {
+            console.log("Fetching employee details for");
+            const response = await axios.get(`http://localhost:4000/find-employee?email=${email}`, { withCredentials: true });
+            if (response.data.success) {
+                console.log(response.data.employee);
+                setThisid(response.data.employee.id);
+                // console.log("This id is", thisid);
+                return response.data.employee; // Return the employee object
+            } else {
+                console.error("Employee not found");
+                return null; // Handle case where employee isn't found
+            }
+        } catch (error) {
+            console.error("Error fetching employee details:", error);
+            return null; // Return null or appropriate error handling
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
        
+        if (employeeId === thisid) {
        
         try {
             // Update URL to your server endpoint
@@ -48,17 +71,28 @@ function MakeClaimLM() {
             console.error("Error submitting claim", error);
             // Handle error (e.g., show error message to the user)
         }
+      }
+        else {
+          alert("Employee ID does not match the employee's ID. Please check and try again.");
+        }
     };
 
     const routeBack = () => {
       navigate('/lineManager');
     }
     useEffect(() => {
-        // Wait for the loading to complete before checking authentication status
-        if (!loading && !auth) {
-            console.log("Not authenticated");
-            navigate('/'); // Adjust this path as needed
-        }
+
+      // Wait for the loading to complete before checking authentication status
+      if (!loading && !auth) {
+        console.log("Not authenticated");
+        navigate('/'); // Adjust this path as needed
+      }
+      if (userEmail) { // Add this check
+        fetchEmployeeDetails(userEmail);
+      }
+      else {
+        console.error("No email found");
+      }
         }, [auth, loading, navigate]);
     return (
         <>

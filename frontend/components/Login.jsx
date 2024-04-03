@@ -6,7 +6,7 @@ import { useAuth } from './AuthContext';
 import '../output.css';
 
 function Login() {
-    const { auth, setAuth, empType } = useAuth();
+    const { auth, setAuth, setEmail } = useAuth();
     const [values, setValues] = useState({email: '', password: ''});
     const navigate = useNavigate();
     
@@ -34,6 +34,8 @@ function Login() {
 		.then(async res => { // Wrap the callback in an async function
 			if(res.data.Status === "Success") {
 				const employee = await fetchEmployeeDetails(values.email);
+			    setEmail(values.email);
+				localStorage.setItem('userEmail', values.email);
 				if (employee) {
 					const empType = employee.type;
 					setAuth(true);

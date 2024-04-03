@@ -8,6 +8,7 @@ import axios from 'axios';
 function Admin() {
     const [values, setValues] = useState({email: ''});
     const [employeeDetails, setEmployeeDetails] = useState(null);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const navigate = useNavigate();
     const { auth, loading } = useAuth();
 
@@ -84,7 +85,12 @@ function Admin() {
                   <div className="font-semibold text-xl">EmployeeId: <span className="font-normal">{employeeDetails.id}</span></div>
                   <div className="text-xl font-semibold ">Name: <span className="font-normal text-green-700">{employeeDetails.name}</span></div>
                   <div className="text-xl font-semibold">Email: <span className="font-normal text-blue-700">{employeeDetails.email}</span></div>
-                  <div className="text-xl font-semibold">Password: <span className="font-normal text-red-700">{employeeDetails.password}</span></div>
+                  <div className="text-xl font-semibold" onMouseEnter={() => setIsPasswordVisible(true)} onMouseLeave={() => setIsPasswordVisible(false)}>
+                    Password: {' '}
+                    <span className={`font-normal ${isPasswordVisible ? 'text-red-700' : 'invisible'}`}>
+                      {isPasswordVisible ? employeeDetails.password : '••••••••'}
+                    </span>
+                  </div>
                 </div>
               ) : (
                 <div className="text-xl font-bold">Employee details not available</div>
@@ -94,7 +100,7 @@ function Admin() {
               </div>
             </div>
           </div>
-              <button className="bg-green-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300 mt-5" onClick={CreatForm}>Create An Account</button>
+              <button className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded transition duration-300 mt-5" onClick={CreatForm}>Create An Account</button>
         </div>
       </>
       
