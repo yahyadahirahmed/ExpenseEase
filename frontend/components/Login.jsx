@@ -106,7 +106,7 @@ function Login() {
             	                <a className='inline-block align-baseline font-bold text-sm text-gray-900 hover:text-blue-800' href="#">
             	                    Forgot Password?
             	                </a>
-            	                <button className='bg-gray-800 hover:bg-red-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline' type="submit">
+            	                <button className='bg-gray-800 hover:bg-green-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline' type="submit">
             	                    Submit
             	                </button>
             	            </div>
