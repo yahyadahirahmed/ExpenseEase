@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import jwt from 'jsonwebtoken'
-import { authenticateEmployee, findEmployee, findEmployeeClaims, findClaims, acceptClaim, rejectClaim, createClaim, getEmployeeDetails } from './script.cjs'
+import { authenticateEmployee, findEmployee, findEmployeeClaims, findClaims, acceptClaim, rejectClaim, createClaim, getEmployeeDetails, createAccount } from './script.cjs'
 
 const app = express();
 app.use(express.json());
@@ -193,6 +193,21 @@ app.post('/makeClaim', async (req, res) => {
     }
 });
 
+app.post('/create', async (req, res) => {
+    const { employeeName, employeeEmail, employeePassword, employeeType } = req.body;
+
+    try {
+        const newEmployee = await createAccount(employeeName, employeeEmail, employeePassword, employeeType);
+        if (newEmployee) {
+            res.status(201).json({ success: true, message: 'Account created successfully', employee: newEmployee });
+        } else {
+            res.status(400).json({ success: false, message: 'Failed to create account' });
+        }
+    } catch (error) {
+        console.error("Error creating account:", error);
+        res.status(500).json({ success: false, message: 'Server error', error: error.message });
+    }
+});
 
 const PORT = 4000;
 app.listen(PORT, () => {

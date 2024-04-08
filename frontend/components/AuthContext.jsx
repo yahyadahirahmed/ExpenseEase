@@ -17,7 +17,8 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.get('http://localhost:4000', { withCredentials: true });
       if (response.data.Status === "Success") {
         setAuth(true);
-        setEmail(response.data.email);
+        // setEmail(response.data.email);
+        // console.log("Email is", response.data.email);
       } else {
         setAuth(false);
       }
@@ -38,6 +39,7 @@ export const AuthProvider = ({ children }) => {
       await axios.get('http://localhost:4000/logout', { withCredentials: true });
       setAuth(false);
       setEmail('');
+      localStorage.removeItem('userEmail')
       window.location.reload();
     } catch (error) {
       console.error("Logout failed:", error);
@@ -45,7 +47,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth ,email, logout, loading }}>
+    <AuthContext.Provider value={{ auth, setAuth, setEmail ,email, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

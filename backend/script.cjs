@@ -12,18 +12,6 @@ async function main() {
     //             rejected: false,
     //         },
     //     });
-
-//     const claim = await prisma.employee.create({
-//         data : {
-//             id: 3,
-//             name: 'wasim',
-//             email: 'wasim@gmail.com',
-//             password: '123',
-//             type: 'admin'
-//         }
-// });
-
-
     // Delete all claims associated with the employee
     // await prisma.claims.delete({
     //     where: {
@@ -73,7 +61,7 @@ async function authenticateEmployee(email, password) {
 
 async function findClaims() {
     const employeeIDs = await prisma.claims.findMany({
-        where: { approved: false, rejected: false},
+        where: { approved: false, rejected: false },
     });
     return employeeIDs; 
 }
@@ -110,6 +98,39 @@ async function createClaim(employeeId, employeeName ,description, amount) {
       throw error; // Rethrow the error to handle it in the server.js
     }
   }
+
+  async function createAccount(employeeName, employeeEmail, employeePassword, type) {
+    // Basic validation checks
+    if (!employeeName || typeof employeeName !== 'string' || employeeName.trim() === '') {
+        throw new Error('Invalid or missing employee name.');
+    }
+    if (!employeeEmail || typeof employeeEmail !== 'string' || employeeEmail.trim() === '' || !employeeEmail.includes('@')) {
+        throw new Error('Invalid or missing employee email.');
+    }
+    if (!employeePassword || typeof employeePassword !== 'string' ) {
+        throw new Error('Invalid or missing employee password.');
+    }
+    if (!type || (type !== 'employee' && type !== 'LineManager' && type !== 'admin')) {
+        throw new Error('Invalid or missing employee type.');
+    }
+
+    try {
+        const newEmployee = await prisma.employee.create({
+            data: {
+                name: employeeName,
+                email: employeeEmail,
+                password: employeePassword,
+                type: type
+            },
+        });
+        console.log("Employee created successfully:", newEmployee);
+        return newEmployee;
+    } catch (error) {
+        console.error("Error creating employee:", error);
+        throw error; // Ensure the error is thrown to be caught where the function is called
+    }
+}
+
   
 // Function to accept a claim by setting 'approved' to true and 'rejected' to false
 async function acceptClaim(claimId) {
@@ -151,6 +172,7 @@ async function rejectClaim(claimId) {
     }
 }
 
+async function getclaimLM() {}
 
 
 // Removed the main function execution and exports for simplicity
@@ -169,3 +191,4 @@ exports.findClaims = findClaims;
 exports.acceptClaim = acceptClaim;
 exports.rejectClaim = rejectClaim;
 exports.createClaim = createClaim;
+exports.createAccount = createAccount;

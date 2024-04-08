@@ -6,7 +6,7 @@ import { useAuth } from './AuthContext';
 import '../output.css';
 
 function Login() {
-    const { auth, setAuth, empType } = useAuth();
+    const { auth, setAuth, setEmail } = useAuth();
     const [values, setValues] = useState({email: '', password: ''});
     const navigate = useNavigate();
     
@@ -34,6 +34,8 @@ function Login() {
 		.then(async res => { // Wrap the callback in an async function
 			if(res.data.Status === "Success") {
 				const employee = await fetchEmployeeDetails(values.email);
+			    setEmail(values.email);
+				localStorage.setItem('userEmail', values.email);
 				if (employee) {
 					const empType = employee.type;
 					setAuth(true);
@@ -70,9 +72,9 @@ function Login() {
 
     return (
 		<>
-            	<div className='flex justify-center items-center min-h-screen bg-gray-700'>
+            	<div className='flex justify-center items-center min-h-screen bg-gray-900'>
             	    <div className='max-w-md w-full bg-white shadow-lg rounded-lg p-8'>
-            	        <h2 className='font-bold text-xl text-center text-green-900 mb-8'>Expense Ease</h2>
+            	        <h2 className='font-bold text-xl text-center text-grey-300 mb-8'>Expense Ease</h2>
             	        <form onSubmit={handleSubmit}>
             	            <div className='mb-4'>
             	                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email:</label>
@@ -104,7 +106,7 @@ function Login() {
             	                <a className='inline-block align-baseline font-bold text-sm text-gray-900 hover:text-blue-800' href="#">
             	                    Forgot Password?
             	                </a>
-            	                <button className='bg-gray-800 hover:bg-red-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline' type="submit">
+            	                <button className='bg-gray-800 hover:bg-green-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline' type="submit">
             	                    Submit
             	                </button>
             	            </div>

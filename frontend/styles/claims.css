@@ -21,10 +21,17 @@
     width: 30%;
     border: 2px solid #000000;
     border-radius: 10px;
+<<<<<<< HEAD:styles/claims.css
+    background-color: rgb(152, 205, 231);
+}
+.claim-type {
+    text-align:left;
+=======
     background-color: rgb(49, 124, 161);
 }
 .claim-type {
     text-align:center;
+>>>>>>> 9955b1fb79cbc4ae0248fc7ec76d1b00ef35f5db:frontend/styles/claims.css
     font-size: 20px;
     width: 100%;
     padding: 5px;

@@ -8,8 +8,13 @@ import axios from 'axios';
 function Admin() {
     const [values, setValues] = useState({email: ''});
     const [employeeDetails, setEmployeeDetails] = useState(null);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const navigate = useNavigate();
     const { auth, loading } = useAuth();
+
+     const CreatForm = () => {
+        navigate('/createAccount');
+     } 
 
   useEffect(() => {
     // Wait for the loading to complete before checking authentication status
@@ -52,57 +57,53 @@ function Admin() {
 
   return (
     <>
-      {auth && (
+  {auth && (
         <>
-          <Navbar />
-          <div className="flex items-center justify-center">
-            <h1 className='text-centre text-4xl mt-4'>User Management</h1>
+        <Navbar />
+        <div className="flex flex-col items-center justify-center my-10 w-full">
+          <h1 className='text-center text-4xl font-bold text-gray-700 mb-8'>User Management</h1>
+          <div className="bg-gray-900 rounded-lg p-6 shadow-lg w-full max-w-4xl">
+            <div className='ml-20'>
+            <form className='flex items-end gap-4 ml-20' onSubmit={handleSubmit}>
+              <label className="text-white font-bold p-2 ">Email:</label>
+              <input  
+                autoComplete='on'
+                className='p-2 w-64 text-black font-bold rounded shadow'
+                type="text"
+                name="email"
+                placeholder="Enter email..."
+                onChange={e => setValues({...values, email: e.target.value})}
+              />
+              <button type="submit" className="bg-blue-500 text-white px-4 py-2 font-bold rounded hover:bg-blue-700 transition duration-300">
+                Search
+              </button>
+            </form>
+            </div>
+            <div className="bg-gray-300 m-4 p-4 rounded shadow">
+              {employeeDetails ? (
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                  <div className="font-semibold text-xl">EmployeeId: <span className="font-normal">{employeeDetails.id}</span></div>
+                  <div className="text-xl font-semibold ">Name: <span className="font-normal text-green-700">{employeeDetails.name}</span></div>
+                  <div className="text-xl font-semibold">Email: <span className="font-normal text-blue-700">{employeeDetails.email}</span></div>
+                  <div className="text-xl font-semibold" onMouseEnter={() => setIsPasswordVisible(true)} onMouseLeave={() => setIsPasswordVisible(false)}>
+                    Password: {' '}
+                    <span className={`font-normal ${isPasswordVisible ? 'text-red-700' : 'invisible'}`}>
+                      {isPasswordVisible ? employeeDetails.password : '••••••••'}
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-xl font-bold">Employee details not available</div>
+              )}
+              <div className="flex justify-end mt-4">
+                <button className="bg-gray-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">Manage Account</button>
+              </div>
+            </div>
           </div>
-                    <div className="bg-gray-900 rounded p-2 m-10 mt-10">
-                        <div className="">
-                            <div className="search">
-                                 <form className='flex justify-start m-4' onSubmit={handleSubmit}> {/* Use onSubmit here and refer to handleSubmit */}
-                                    <label className = "pt-2 pr-1 text-white font-bold">Email:</label>
-            	 	                    <div className='pl-4 pt-2 pr-1'>
-            	                        	<input  
-					                    		            autoComplete='on'
-            	                                className=' px-2 font-bold rounded'
-            	                                type="text"
-            	                                name="email"
-            	                                onChange={e => setValues({...values, email: e.target.value})}
-            	                        	/>
-            	 	                    </div>
-                                        <div className='pl-4 pt-2 pr-1 '>
-                                        <button type="submit" className="bg-gray-800 text-white px-1 font-bold rounded hover:bg-red-700">
-                                            Search
-                                        </button>
-                                        </div>
-                                </form>
-                            </div>
-                             
-                            <div className="bg-gray-300 ml-4 mr-8 rounded">
-                                <div className='flex justify-between'>
-                                {/* Conditional rendering to ensure employeeDetails is not null */}
-                                {employeeDetails ? (
-                                    <>
-                                    <div className='flex justify-start'>
-                                      <div className="text-2xl p-3">EmployeeId: {employeeDetails.id}</div>
-                                      <div className="text-2xl p-3 ml-5 text-green-700">Name: {employeeDetails.name}</div>
-                                      <div className="text-2xl p-3 ml-5 text-blue-700">Email: {employeeDetails.email}</div>
-                                      <div className="text-2xl p-3 ml-5 text-red-700">Password: {employeeDetails.password}</div>
-                                    </div>
-                                    </>
-                                ) 
-                                : 
-                                (
-                                    <div className="text-2xl font-bold pt-2 pl-1">Employee details not available</div>
-                                )}
-                                <div className="text-lg bg-gray-800 m-2 p-1 text-white font-bold rounded hover:bg-red-700"><button>Manage Account</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        </>
+              <button className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded transition duration-300 mt-5" onClick={CreatForm}>Create An Account</button>
+        </div>
+      </>
+      
       )}
     </>
   );

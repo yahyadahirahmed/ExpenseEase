@@ -82,35 +82,30 @@ function ClaimsManager() {
 
     return (
         <>
-            <div>
-            <div className='top-section'>
-                <h1 className='claimhead font-bold p-4 text-3xl'>Claim Management</h1>
-            </div>
-            <div className="bg-gray-900 rounded p-1 ml-4 mt-3 overflow-y-auto grid grid-cols-2 gap-1"style={{ maxHeight: '700px' }}>
-                {claims.map((claim, index) => (
-                    <div className="claim w-70 bg-gray-300 rounded m-2" key={index}>
-                        <div className="claim-details p-4 flex justify-between">
-                        <h3 className='font-bold'>{employeeNames[claim.employeeId] || 'Loading...'}'s claim</h3>
-                            <p>Employee ID: {claim.employeeId}</p>
-                        </div>
-                        <div className="claim-info flex justify-between">
-                            <p className='p-2'>Amount: ${claim.amount}</p>
-                                {(() => {
-                                    const formattedDate = format(new Date(claim.created), 'yyyy-MM-dd');
-                                    return <p className='p-2'>Date: {formattedDate}</p>;
-                                })()}
-                        </div>
-                            <p className='w-80 overflow-hidden p-1.5'>Description:<br></br>{claim.description}</p>
-                        <div className="button-container flex justify-between">
-                            {/* <button>View Receipt</button> */}
-                            <button className='m-1 px-2 py-1 rounded bg-gray-800 text-white hover:bg-red-700' onClick={() => acceptClaim(claim.id)}>Accept</button>
-                            <button className='m-1 px-2 py-1 rounded bg-gray-800 text-white hover:bg-red-700' onClick={() => rejectClaim(claim.id)}>Reject</button>
-                        </div>
+    <div className='flex flex-col items-center mt-8'>
+        <h1 className='text-3xl font-bold text-black mb-6'>Claim Management</h1>
+        <div className="w-full max-w-4xl grid md:grid-cols-2 gap-4 ml-3 bg-gray-900 overflow-auto rounded p-2" style={{ maxHeight: '750px' }}>
+            {claims.map((claim, index) => (
+                <div key={index} className="bg-gray-700 m-2 p-4 rounded-lg shadow">
+                    <div className='flex justify-between items-center text-white'>
+                        <h3 className='font-bold'>{employeeNames[claim.employeeId] || 'Loading...'}'s Claim</h3>
+                        <p>Employee ID: {claim.employeeId}</p>
                     </div>
-                ))}
-            </div>
-            </div>
-        </>
+                    <div className="flex justify-between mt-2 text-gray-400">
+                        <p className='p-1'>Amount: ${claim.amount}</p>
+                        <p className='p-1'>Date: {format(new Date(claim.created), 'yyyy-MM-dd')}</p>
+                    </div>
+                    <p className='mt-2 text-gray-200'>Description: {claim.description}</p>
+                    <div className="flex justify-end mt-4">
+                        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2'>View</button>
+                        <button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2' onClick={() => acceptClaim(claim.id)}>Accept</button>
+                        <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={() => rejectClaim(claim.id)}>Reject</button>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</>
     );
 };
 
