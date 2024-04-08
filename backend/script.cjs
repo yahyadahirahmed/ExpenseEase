@@ -172,6 +172,7 @@ async function rejectClaim(claimId) {
     }
 }
 
+async function getclaimLM() {}
 
 
 // Removed the main function execution and exports for simplicity
