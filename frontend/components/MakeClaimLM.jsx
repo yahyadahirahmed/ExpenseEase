@@ -3,6 +3,7 @@ import { useAuth} from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../output.css';
+import { parse } from 'date-fns';
 
 function MakeClaimLM() {
     const { auth, loading, email} = useAuth();
@@ -13,6 +14,8 @@ function MakeClaimLM() {
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
     const [thisid, setThisid] = useState('');
+    const [file, setFile] = useState(null);
+
 
     const userEmail = localStorage.getItem('userEmail');
     // const [file, setFile] = useState(null); // For file input
@@ -41,29 +44,34 @@ function MakeClaimLM() {
        
         const empid = parseInt(employeeId);
 
+        const formData = new FormData();
+        formData.append('employeeId', employeeId);
+        formData.append('employeeName', employeeName);
+        formData.append('amount', amount);
+        formData.append('description', description);
+
+          if (file) {
+            formData.append('file', file);
+          }
+          
+          const config = {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+          },
+          withCredentials: true,
+          }
+
         if (empid === thisid) {
-       
+          console.log(thisid);
         try {
             // Update URL to your server endpoint
-            const response = await axios.post('http://localhost:4000/makeClaim', 
-            {
-                employeeId: employeeId,
-                employeeName: employeeName,
-                amount: amount,
-                description: description
-            }, 
-            {
-                    withCredentials: true,
-                    headers: {
-                        'Content-Type': 'application/json', // Set the Content-Type header to application/json
-                    },
-                });
+            const response = await axios.post('http://localhost:4000/makeClaim', formData, config);
 
             
             if (response.data.success) {
                 console.log("Claim submitted", response.data);
                 alert("Claim submitted successfully");
-                navigate('/lineManager');
+                navigate('/employee');
             } else {
                 console.error("Failed to submit claim");
                 // Handle failure (e.g., show error message to the user)
@@ -74,8 +82,8 @@ function MakeClaimLM() {
             // Handle error (e.g., show error message to the user)
         }
       }
-        else {
-          alert("Employee ID does not match the employee's ID. Please check and try again.");
+        else {          
+          alert("Wrong ID. Please check and try again.");
         }
     };
 
@@ -142,7 +150,13 @@ function MakeClaimLM() {
               <div className="flex items-center justify-between">
                 <div className="w-full mr-2">
                   <label className="block text-white text-sm font-bold mb-2">Select a file</label>
-                  <input type="file" id="file" name="file" accept=".pdf,.doc,.docx" className="w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600"/>
+                  <input 
+                  type="file"
+                  id="file" 
+                  name="file" 
+                  accept=".pdf,.doc,.docx" 
+                  onChange={(e) => setFile(e.target.files[0])}
+                  className="w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600"/>
                 </div>
               </div>
       

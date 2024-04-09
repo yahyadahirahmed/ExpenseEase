@@ -73,6 +73,17 @@ function ClaimsManagerLM() {
         }
     }
     
+    async function showImage(filePath) {
+        try{
+            const imageUrl = `http://localhost:4000/${filePath}`;
+            console.log(imageUrl);
+            window.open(imageUrl, '_blank');
+        }
+        catch (error) {
+            console.error("Error fetching image:", error);
+        }
+    }
+    
 
     useEffect(() => {
         fetchClaimsForManagers();
@@ -97,7 +108,7 @@ function ClaimsManagerLM() {
                     </div>
                     <p className='mt-2 text-gray-200'>Description: {claim.description}</p>
                     <div className="flex justify-end mt-4">
-                        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2'>View</button>
+                        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2' onClick={() => showImage(claim.filePath)}>View</button>
                         <button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2' onClick={() => acceptClaim(claim.id)}>Accept</button>
                         <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={() => rejectClaim(claim.id)}>Reject</button>
                     </div>
