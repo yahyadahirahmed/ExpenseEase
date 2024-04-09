@@ -13,11 +13,13 @@ async function main() {
     //         },
     //     });
     // Delete all claims associated with the employee
-    // await prisma.claims.delete({
-    //     where: {
-    //         employeeId: 5,
-    //     },
-    // });
+//    const del =  await prisma.claims.deleteMany({
+//         where: {
+//             id: {
+//                 gt: 0,
+//             }
+//         },
+//     });
 
     // Now it's safe to delete the employee
     // const employee = await prisma.employee.delete({
@@ -60,11 +62,21 @@ async function authenticateEmployee(email, password) {
 }
 
 async function findClaims() {
-    const employeeIDs = await prisma.claims.findMany({
-        where: { approved: false, rejected: false },
+    const claims = await prisma.claims.findMany({
+      where: {
+        approved: false,
+        rejected: false,
+        employee: {
+          type: "employee", // Assuming 'type' is a field in the 'Employee' model that specifies the employee type
+        },
+      },
+      include: {
+        employee: true, // Include employee data in the result
+      },
     });
-    return employeeIDs; 
-}
+    return claims;
+  }
+  
 
 // Function to create claims after a make claim form has been submitted by an employee
 async function createClaim(employeeId, employeeName ,description, amount) {
@@ -110,7 +122,7 @@ async function createClaim(employeeId, employeeName ,description, amount) {
     if (!employeePassword || typeof employeePassword !== 'string' ) {
         throw new Error('Invalid or missing employee password.');
     }
-    if (!type || (type !== 'employee' && type !== 'LineManager' && type !== 'admin')) {
+    if (!type || (type !== 'employee' && type !== 'LineManager' && type !== 'admin' && type !== 'SuperManager')) {
         throw new Error('Invalid or missing employee type.');
     }
 
@@ -172,7 +184,18 @@ async function rejectClaim(claimId) {
     }
 }
 
-async function getclaimLM() {}
+async function findLMClaims() {
+    const claims = await prisma.claims.findMany({
+        where: {
+          approved: false,
+          rejected: false,
+          employee: {
+            type: "LineManager", // Assuming 'type' is a field in the 'Employee' model that specifies the employee type
+          },
+        },
+      });
+      return claims;
+}
 
 
 // Removed the main function execution and exports for simplicity
@@ -192,3 +215,4 @@ exports.acceptClaim = acceptClaim;
 exports.rejectClaim = rejectClaim;
 exports.createClaim = createClaim;
 exports.createAccount = createAccount;
+exports.findLMClaims = findLMClaims;

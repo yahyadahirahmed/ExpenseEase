@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import jwt from 'jsonwebtoken'
-import { authenticateEmployee, findEmployee, findEmployeeClaims, findClaims, acceptClaim, rejectClaim, createClaim, getEmployeeDetails, createAccount } from './script.cjs'
+import { authenticateEmployee, findEmployee, findEmployeeClaims, findClaims, acceptClaim, rejectClaim, createClaim, getEmployeeDetails, createAccount, findLMClaims } from './script.cjs'
 
 const app = express();
 app.use(express.json());
@@ -103,6 +103,7 @@ app.get('/get-employee-details/:employeeId', async (req, res) => {
 
 
 
+
 app.get('/claims', authenticate, async (req, res) => {
     try {
         // Decoding the token to get the employee ID.
@@ -130,6 +131,15 @@ app.get('/claims', authenticate, async (req, res) => {
 app.get('/ClaimsForManager', authenticate, async (req, res) => {
     try {
         const claims = await findClaims();
+        res.json({ success: true, claims });
+    } catch (error) {
+        console.error("Error fetching claims for manager:", error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+});
+app.get('/ClaimsForSuperManager', authenticate, async (req, res) => {
+    try {
+        const claims = await findLMClaims();
         res.json({ success: true, claims });
     } catch (error) {
         console.error("Error fetching claims for manager:", error);
@@ -210,6 +220,6 @@ app.post('/create', async (req, res) => {
 });
 
 const PORT = 4000;
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on http://0.0.0.0:${PORT}`);
 });

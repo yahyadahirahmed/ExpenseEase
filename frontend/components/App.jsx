@@ -9,6 +9,7 @@ import MakeClaim from './MakeClaim.jsx';
 import MakeClaimLM from './MakeClaimLM.jsx';
 import LineManagerClaims from './LineManagerClaims.jsx';
 import CreatAccount from './CreateAccount.jsx';
+import SuperManager from './SuperManager.jsx';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/makeClaim" element={<MakeClaim />} />
         <Route path="/makeClaimLM" element={<MakeClaimLM />} />
+        <Route path="/superManager" element={<SuperManager/>}/>
         <Route path="/createAccount" element={<CreatAccount/>}>
         </Route>
       </Routes>

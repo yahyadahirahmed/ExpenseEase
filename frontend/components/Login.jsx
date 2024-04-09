@@ -49,7 +49,11 @@ function Login() {
 					} else if (empType === 'admin') {
 						console.log("admin");
 						navigate('/admin')
-					} else {
+					} else if (empType === 'SuperManager') {
+						console.log("super manager");
+						navigate('/superManager')
+					} 
+					else {
 						navigate('/')
 					}
 				} else {
