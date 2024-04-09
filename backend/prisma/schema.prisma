@@ -33,6 +33,7 @@ model Claims {
   approved     Boolean
   rejected     Boolean
   employeeName String
+  filePath     String
 
   employeeId Int // Foreign key pointing to Employee
   employee   Employee @relation(fields: [employeeId], references: [id])

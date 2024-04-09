@@ -27,7 +27,9 @@ function CreatAccount() {
         try {
             const response = await axios.post('http://localhost:4000/create', employeeDetails);
             if (response.data.success) {
-                console.log("Account created successfully:", response.data);
+                alert("Account created successfully:", response.data);
+                navigate('/admin');
+
                 // Optionally, redirect or clear the form here
             } else {
                 console.error("Failed to create account:", response.data.message);

@@ -12,7 +12,7 @@ function LineManagerClaims() {
 
     return (
         <>
-            <div>
+            <div >
                 <div className=" my-8">
                     <div className="flex">
                     <h1 className="text-3xl ml-4 text-center font-bold text-gray-800 mr-8">Line Manager Claims</h1>

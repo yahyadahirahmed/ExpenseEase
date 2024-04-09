@@ -2,7 +2,9 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import jwt from 'jsonwebtoken'
-import { authenticateEmployee, findEmployee, findEmployeeClaims, findClaims, acceptClaim, rejectClaim, createClaim, getEmployeeDetails, createAccount } from './script.cjs'
+import multer from 'multer'
+import path from 'path'
+import { authenticateEmployee, findEmployee, findEmployeeClaims, findClaims, acceptClaim, rejectClaim, createClaim, getEmployeeDetails, createAccount, findLMClaims } from './script.cjs'
 
 const app = express();
 app.use(express.json());
@@ -14,6 +16,23 @@ app.use(cors(
       credentials: true
   }
 ));
+
+// Configure multer for file storage
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/') // Save files in the uploads directory
+    },
+    filename: (req, file, cb) => {
+      // You might want to save the file with claimId as part of the filename
+      const claimId = req.body.claimId;
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, claimId + '-' + uniqueSuffix + path.extname(file.originalname))
+    }
+  });
+  
+const upload = multer({ storage: storage });
+app.use('/uploads', express.static('uploads'));
+
 
 const authenticate = (req, res, next) => {
     const token = req.cookies.token;
@@ -103,6 +122,7 @@ app.get('/get-employee-details/:employeeId', async (req, res) => {
 
 
 
+
 app.get('/claims', authenticate, async (req, res) => {
     try {
         // Decoding the token to get the employee ID.
@@ -130,6 +150,15 @@ app.get('/claims', authenticate, async (req, res) => {
 app.get('/ClaimsForManager', authenticate, async (req, res) => {
     try {
         const claims = await findClaims();
+        res.json({ success: true, claims });
+    } catch (error) {
+        console.error("Error fetching claims for manager:", error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+});
+app.get('/ClaimsForSuperManager', authenticate, async (req, res) => {
+    try {
+        const claims = await findLMClaims();
         res.json({ success: true, claims });
     } catch (error) {
         console.error("Error fetching claims for manager:", error);
@@ -175,12 +204,12 @@ app.post('/claims/reject/:claimId', async (req, res) => {
     }
 });
 
-app.post('/makeClaim', async (req, res) => {
+app.post('/makeClaim', upload.single('file'), async (req, res) => {
     console.log("here it is:");
     const { employeeId, employeeName, amount, description } = req.body;
-    console.log(req.body);
+    const file = req.file;
     try {
-        const claim = await createClaim(employeeId, employeeName, description, amount);
+        const claim = await createClaim(employeeId, employeeName, description, amount, file.path);
         if (claim) {
             console.log("Claim created successfully:", claim);
             res.status(201).json({ success: true, message: 'Claim created successfully', claim });
@@ -210,6 +239,6 @@ app.post('/create', async (req, res) => {
 });
 
 const PORT = 4000;
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on http://0.0.0.0:${PORT}`);
 });
