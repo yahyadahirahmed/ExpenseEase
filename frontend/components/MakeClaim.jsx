@@ -14,6 +14,8 @@ function MakeClaim() {
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
     const [thisid, setThisid] = useState('');
+    const [file, setFile] = useState(null);
+
 
     const userEmail = localStorage.getItem('userEmail');
     // const [file, setFile] = useState(null); // For file input
@@ -42,23 +44,28 @@ function MakeClaim() {
        
         const empid = parseInt(employeeId);
 
+        const formData = new FormData();
+        formData.append('employeeId', employeeId);
+        formData.append('employeeName', employeeName);
+        formData.append('amount', amount);
+        formData.append('description', description);
+
+          if (file) {
+            formData.append('file', file);
+          }
+          
+          const config = {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+          },
+          withCredentials: true,
+          }
+
         if (empid === thisid) {
           console.log(thisid);
         try {
             // Update URL to your server endpoint
-            const response = await axios.post('http://localhost:4000/makeClaim', 
-            {
-                employeeId: employeeId,
-                employeeName: employeeName,
-                amount: amount,
-                description: description
-            }, 
-            {
-                    withCredentials: true,
-                    headers: {
-                        'Content-Type': 'application/json', // Set the Content-Type header to application/json
-                    },
-                });
+            const response = await axios.post('http://localhost:4000/makeClaim', formData, config);
 
             
             if (response.data.success) {
@@ -76,7 +83,7 @@ function MakeClaim() {
         }
       }
         else {          
-          alert("Employee ID does not match the employee's ID. Please check and try again.");
+          alert("Wrong ID. Please check and try again.");
         }
     };
 
@@ -143,7 +150,13 @@ function MakeClaim() {
               <div className="flex items-center justify-between">
                 <div className="w-full mr-2">
                   <label className="block text-white text-sm font-bold mb-2">Select a file</label>
-                  <input type="file" id="file" name="file" accept=".pdf,.doc,.docx" className="w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600"/>
+                  <input 
+                  type="file"
+                  id="file" 
+                  name="file" 
+                  accept=".pdf,.doc,.docx" 
+                  onChange={(e) => setFile(e.target.files[0])}
+                  className="w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600"/>
                 </div>
               </div>
       

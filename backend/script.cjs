@@ -79,14 +79,14 @@ async function findClaims() {
   
 
 // Function to create claims after a make claim form has been submitted by an employee
-async function createClaim(employeeId, employeeName ,description, amount) {
+async function createClaim(employeeId, employeeName ,description, amount, filePath) {
     // Convert amount to a number if it's a string
     amount = parseFloat(amount);
     employeeId = parseFloat(employeeId);
    let variable = employeeName;
    let variable2 = description;
    if (variable === undefined && variable2 === undefined) {
-         throw new Error('wow this is gay');
+         throw new Error('values undifeined');
    }
     if (!employeeId || !description || isNaN(amount) || !employeeName) {
       throw new Error('Missing or invalid input');
@@ -99,6 +99,7 @@ async function createClaim(employeeId, employeeName ,description, amount) {
           employeeName,
           description,
           amount, // Pass the converted amount
+          filePath,
           approved: false,
           rejected: false,
         },
